@@ -1,7 +1,7 @@
-package com.rookies3.MySpringbootLab.controller;
+package com.rookies4.myspringbootlab.controller;
 
-import com.rookies3.MySpringbootLab.entity.Book;
-import com.rookies3.MySpringbootLab.repository.BookRepository;
+import com.rookies4.myspringbootlab.entity.Book;
+import com.rookies4.myspringbootlab.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

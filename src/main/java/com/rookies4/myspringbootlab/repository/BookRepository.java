@@ -1,6 +1,6 @@
-package com.rookies3.MySpringbootLab.repository;
+package com.rookies4.myspringbootlab.repository;
 
-import com.rookies3.MySpringbootLab.entity.Book;
+import com.rookies4.myspringbootlab.entity.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,6 +9,8 @@ import java.util.Optional;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
+
     Optional<Book> findByIsbn(String isbn);
+
     List<Book> findByAuthor(String author);
 }
