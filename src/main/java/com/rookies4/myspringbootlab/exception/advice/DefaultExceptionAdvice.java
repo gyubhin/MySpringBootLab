@@ -1,66 +1,35 @@
-package com.rookies4.myspringbootlab.exception.advice;
+package com.rookies4.myspringbootlab.exception;
 
-import com.rookies4.myspringbootlab.exception.BusinessException;
-import com.rookies4.myspringbootlab.exception.BusinessException;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.time.Instant;
-import java.util.HashMap;
-import java.util.Map;
-
 @RestControllerAdvice
-@Slf4j
 public class DefaultExceptionAdvice {
 
-//    @ExceptionHandler(BusinessException.class)
-//    public ResponseEntity<ErrorObject> handleResourceNotFoundException(BusinessException ex) {
-//        ErrorObject errorObject = new ErrorObject();
-//        errorObject.setStatusCode(ex.getHttpStatus().value()); //404
-//        errorObject.setMessage(ex.getMessage());
-//
-//        log.error(ex.getMessage(), ex);
-//
-//        return new ResponseEntity<ErrorObject>(errorObject, HttpStatusCode.valueOf(ex.getHttpStatus().value()));
-//    }
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<?> handleValidationError(MethodArgumentNotValidException e) {
+        String message = e.getBindingResult()
+                .getAllErrors()
+                .get(0)
+                .getDefaultMessage();
+        return ResponseEntity.badRequest().body(new ErrorResponse(message));
+    }
 
-    /*
-        Spring6 버전에 추가된 ProblemDetail 객체에 에러정보를 담아서 리턴하는 방법
-     */
     @ExceptionHandler(BusinessException.class)
-    protected ProblemDetail handleException(BusinessException e) {
-        ProblemDetail problemDetail = ProblemDetail.forStatus(e.getHttpStatus());
-        problemDetail.setTitle("Not Found");
-        problemDetail.setDetail(e.getMessage());
-        problemDetail.setProperty("errorCategory", "Generic");
-        problemDetail.setProperty("timestamp", Instant.now());
-        return problemDetail;
+    public ResponseEntity<?> handleBusinessError(BusinessException e) {
+        return ResponseEntity.badRequest().body(new ErrorResponse(e.getMessage()));
     }
 
-    //숫자타입의 값에 문자열타입의 값을 입력으로 받았을때 발생하는 오류
-    @ExceptionHandler(HttpMessageNotReadableException.class)
-    protected ResponseEntity<Object> handleException(HttpMessageNotReadableException e) {
-        Map<String, Object> result = new HashMap<String, Object>();
-        result.put("message", e.getMessage());
-        result.put("httpStatus", HttpStatus.BAD_REQUEST.value());
-
-        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<?> handleDefaultError(Exception e) {
+        return ResponseEntity.internalServerError().body(new ErrorResponse("알 수 없는 오류가 발생했습니다."));
     }
 
-    @ExceptionHandler(RuntimeException.class)
-    protected ResponseEntity<ErrorObject> handleException(RuntimeException e) {
-        ErrorObject errorObject = new ErrorObject();
-        errorObject.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-        errorObject.setMessage(e.getMessage());
-
-        log.error(e.getMessage(), e);
-
-        return new ResponseEntity<ErrorObject>(errorObject, HttpStatusCode.valueOf(500));
+    static class ErrorResponse {
+        public final String message;
+        public ErrorResponse(String message) { this.message = message; }
+        public String getMessage() { return message; }
     }
 }

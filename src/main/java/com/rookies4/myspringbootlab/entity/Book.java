@@ -8,8 +8,9 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "books")
 @Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Book {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id")
@@ -29,5 +30,4 @@ public class Book {
 
     @Column(nullable = false)
     private LocalDate publishDate;
-
 }
