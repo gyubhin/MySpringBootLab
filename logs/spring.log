@@ -18,6 +18,27 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
+
+2025-08-20T10:18:50.825+09:00  INFO 12308 --- [MySpringBootLab] [main] c.r.m.repository.BookRepositoryTest      : Starting BookRepositoryTest using Java 17.0.2 with PID 12308 (started by KimGyuBhin in C:\rookies4dev\mybackend\SpringBoot\MySpringbootLab)
+2025-08-20T10:18:50.831+09:00  INFO 12308 --- [MySpringBootLab] [main] c.r.m.repository.BookRepositoryTest      : The following 1 profile is active: "prod"
+2025-08-20T10:18:53.280+09:00  INFO 12308 --- [MySpringBootLab] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-20T10:18:53.427+09:00  INFO 12308 --- [MySpringBootLab] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 118 ms. Found 1 JPA repository interface.
+2025-08-20T10:18:54.576+09:00  INFO 12308 --- [MySpringBootLab] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-20T10:18:54.742+09:00  INFO 12308 --- [MySpringBootLab] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.22.Final
+2025-08-20T10:18:54.858+09:00  INFO 12308 --- [MySpringBootLab] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-20T10:18:55.525+09:00  INFO 12308 --- [MySpringBootLab] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-20T10:18:55.624+09:00  INFO 12308 --- [MySpringBootLab] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-20T10:18:55.857+09:00  INFO 12308 --- [MySpringBootLab] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.mariadb.jdbc.Connection@65d7eea4
+2025-08-20T10:18:55.860+09:00  INFO 12308 --- [MySpringBootLab] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-20T10:18:55.926+09:00  WARN 12308 --- [MySpringBootLab] [main] org.hibernate.orm.deprecation            : HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-20T10:18:55.973+09:00  INFO 12308 --- [MySpringBootLab] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 10.11.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
 2025-08-20T10:18:57.392+09:00  INFO 12308 --- [MySpringBootLab] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 2025-08-20T10:18:57.496+09:00  INFO 12308 --- [MySpringBootLab] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
 2025-08-20T10:18:58.473+09:00  WARN 12308 --- [MySpringBootLab] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
