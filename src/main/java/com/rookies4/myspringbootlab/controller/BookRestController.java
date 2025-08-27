@@ -1,7 +1,6 @@
 package com.rookies4.myspringbootlab.controller;
 
 import com.rookies4.myspringbootlab.entity.Book;
-import com.rookies4.myspringbootlab.exception.BusinessException;
 import com.rookies4.myspringbootlab.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
